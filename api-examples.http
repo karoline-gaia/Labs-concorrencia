@@ -1,0 +1,71 @@
+### API Examples - Auction System
+
+### 1. Criar um leilão
+POST http://localhost:8080/auction
+Content-Type: application/json
+
+{
+  "product_name": "iPhone 13 Pro",
+  "category": "Electronics",
+  "description": "Brand new iPhone 13 Pro with 256GB storage, unlocked",
+  "condition": 0
+}
+
+### 2. Criar outro leilão
+POST http://localhost:8080/auction
+Content-Type: application/json
+
+{
+  "product_name": "MacBook Pro M1",
+  "category": "Electronics",
+  "description": "MacBook Pro 2021 with M1 chip, 16GB RAM, 512GB SSD",
+  "condition": 0
+}
+
+### 3. Buscar leilão por ID (substitua pelo ID retornado)
+GET http://localhost:8080/auction/YOUR_AUCTION_ID_HERE
+
+### 4. Listar todos os leilões ativos
+GET http://localhost:8080/auction?status=0
+
+### 5. Listar todos os leilões completos
+GET http://localhost:8080/auction?status=1
+
+### 6. Buscar leilões por categoria
+GET http://localhost:8080/auction?category=Electronics
+
+### 7. Buscar leilões por nome do produto
+GET http://localhost:8080/auction?productName=iPhone
+
+### 8. Criar um lance
+POST http://localhost:8080/bid
+Content-Type: application/json
+
+{
+  "user_id": "user-123",
+  "auction_id": "YOUR_AUCTION_ID_HERE",
+  "amount": 2500.00
+}
+
+### 9. Criar outro lance (maior valor)
+POST http://localhost:8080/bid
+Content-Type: application/json
+
+{
+  "user_id": "user-456",
+  "auction_id": "YOUR_AUCTION_ID_HERE",
+  "amount": 2800.00
+}
+
+### 10. Buscar todos os lances de um leilão
+GET http://localhost:8080/bid/auction/YOUR_AUCTION_ID_HERE
+
+### 11. Buscar o lance vencedor de um leilão
+GET http://localhost:8080/bid/auction/YOUR_AUCTION_ID_HERE/winner
+
+### Notas:
+# - Substitua YOUR_AUCTION_ID_HERE pelo ID real retornado ao criar um leilão
+# - O leilão será fechado automaticamente após o tempo definido em AUCTION_DURATION
+# - Após o fechamento, não será possível fazer novos lances
+# - condition: 0 = Novo, 1 = Usado, 2 = Recondicionado
+# - status: 0 = Ativo, 1 = Completo
